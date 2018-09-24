@@ -14,6 +14,8 @@ set(CMAKE_AUTOUIC ON)
 find_package(Qt5Widgets CONFIG REQUIRED)
 
 set(SOURCES 
+	src/point.h
+	src/point.cpp
 	src/drawwidget.h
 	src/drawwidget.cpp
 	src/mainwindow.h
