@@ -13,9 +13,11 @@ set(CMAKE_AUTOUIC ON)
 # Find the QtWidgets library
 find_package(Qt5Widgets CONFIG REQUIRED)
 
-set(SOURCES 
+set(SOURCES
 	src/point.h
-	src/point.cpp
+	src/point.cpp 
+	src/line.h
+	src/line.cpp
 	src/drawwidget.h
 	src/drawwidget.cpp
 	src/mainwindow.h
