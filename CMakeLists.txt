@@ -2,6 +2,10 @@ cmake_minimum_required(VERSION 3.0)
 
 project(MEASURING CXX)
 
+# Enable C++11
+set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
 # Find includes in corresponding build directories
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
@@ -20,6 +24,8 @@ set(SOURCES
 	src/line.cpp
 	src/drawwidget.h
 	src/drawwidget.cpp
+	src/toolbar.h
+	src/toolbar.cpp
 	src/mainwindow.h
 	src/mainwindow.cpp
 	src/main.cpp)

@@ -12,4 +12,5 @@ private:
 	QGraphicsView * graphicsView;
 public : 
 	explicit DrawWidget(QWidget * parent = 0);
+	void setBackgroundImage(QImage* image);
 };

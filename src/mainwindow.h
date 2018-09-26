@@ -1,6 +1,7 @@
 #pragma once
 #include <QMainWindow>
 #include "drawwidget.h"
+#include "toolbar.h"
 
 class MainWindow :
 	public QMainWindow
@@ -10,4 +11,8 @@ public :
 	explicit MainWindow(QWidget * parent = 0);
 private:
 	DrawWidget* drawWidget;
+	Toolbar* toolbar;
+
+public slots:
+	void slotSetBackgroundImage(QImage*);
 };

@@ -29,3 +29,16 @@ DrawWidget::DrawWidget(QWidget * parent) : QWidget(parent)
 	graphicsScene->addItem(line2);
 
 }
+
+void DrawWidget::setBackgroundImage(QImage * image)
+{
+	QBrush background = QBrush(*image);
+	graphicsScene->setSceneRect(
+		0,
+		0,
+		image->size().width(),
+		image->size().height());
+	
+	graphicsScene->setBackgroundBrush(background);
+	graphicsScene->update();
+}
