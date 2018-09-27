@@ -18,6 +18,7 @@ set(CMAKE_AUTOUIC ON)
 find_package(Qt5Widgets CONFIG REQUIRED)
 
 set(SOURCES
+	src/enums.h
 	src/point.h
 	src/point.cpp 
 	src/line.h

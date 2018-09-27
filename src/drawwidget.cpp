@@ -1,6 +1,17 @@
 #include "drawwidget.h"
 #include "point.h"
 #include "line.h"
+#include <iostream>
+
+void DrawWidget::mousePressEvent(QMouseEvent * event)
+{
+
+}
+
+void DrawWidget::mouseMoveEvent(QMouseEvent * event)
+{
+
+}
 
 DrawWidget::DrawWidget(QWidget * parent) : QWidget(parent)
 {
@@ -41,4 +52,11 @@ void DrawWidget::setBackgroundImage(QImage * image)
 	
 	graphicsScene->setBackgroundBrush(background);
 	graphicsScene->update();
+}
+
+void DrawWidget::slotSetMode(FMODE mode)
+{
+	currentMode = mode;
+	std::cout << "Figure mode changed to " 
+		<< QVariant::fromValue(currentMode).toString().toStdString() << "\n";
 }

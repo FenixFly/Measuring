@@ -13,6 +13,7 @@ private:
 	DrawWidget* drawWidget;
 	Toolbar* toolbar;
 
+	void connectToolbarSignals();
 public slots:
 	void slotSetBackgroundImage(QImage*);
 };

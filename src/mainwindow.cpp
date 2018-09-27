@@ -8,13 +8,17 @@ MainWindow::MainWindow(QWidget * parent)
 
 	toolbar = new Toolbar(this);
 	this->addToolBar(toolbar);
-
-	connect(
-		this->toolbar, SIGNAL(signalImageOpened(QImage*)),
-		this, SLOT(slotSetBackgroundImage(QImage*)));
+	
+	connectToolbarSignals();
 }
 
 void MainWindow::slotSetBackgroundImage(QImage * image)
 {
 	drawWidget->setBackgroundImage(image);
+}
+
+void MainWindow::connectToolbarSignals()
+{
+	connect(this->toolbar, SIGNAL(signalMode(FMODE)),
+		this->drawWidget, SLOT(slotSetMode(FMODE)));
 }
