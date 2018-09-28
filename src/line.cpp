@@ -1,6 +1,5 @@
 #include "line.h"
 #include <QPainter>
-#include <iostream>
 
 QRectF MyLine::boundingRect() const
 {
@@ -38,15 +37,6 @@ MyLine::MyLine(MyPoint* _start, MyPoint * _end) :
 
 void MyLine::paint(QPainter * painter, const QStyleOptionGraphicsItem * option, QWidget * widget)
 {
-	std::cout << "moved "
-		<< "line "
-		<< start->getScreenPos().x() << " "
-		<< start->getScreenPos().y() << " " 
-		<< end->getScreenPos().x() << " "
-		<< end->getScreenPos().y() << "\n";
-
-	std::cout << " " << line().dx() << " " << line().dy() << "\n";
-
 	painter->drawLine(
 		this->line());
 	painter->drawText(

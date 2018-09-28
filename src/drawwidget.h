@@ -1,8 +1,8 @@
 #pragma once
 #include <QWidget>
-#include <QGraphicsScene>
 #include <QGraphicsView>
 #include "enums.h"
+#include "scene.h"
 
 class DrawWidget :
 	public QWidget
@@ -10,7 +10,7 @@ class DrawWidget :
 	Q_OBJECT
 private:
 	FMODE currentMode;
-	QGraphicsScene * graphicsScene;
+	Scene * graphicsScene;
 	QGraphicsView * graphicsView;
 protected:
 	void mousePressEvent(QMouseEvent *event) override;
