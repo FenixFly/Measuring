@@ -17,4 +17,7 @@ protected:
 
 	void createLine(QGraphicsSceneMouseEvent *event);
 	void moveLine(QGraphicsSceneMouseEvent *event);
+
+	void createAngle(QGraphicsSceneMouseEvent *event);
+	void releaseAngle(QGraphicsSceneMouseEvent *event);
 };

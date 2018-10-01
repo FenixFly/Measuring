@@ -21,4 +21,6 @@ void MainWindow::connectToolbarSignals()
 {
 	connect(this->toolbar, SIGNAL(signalMode(FMODE)),
 		this->drawWidget, SLOT(slotSetMode(FMODE)));
+	connect(this->toolbar, SIGNAL(signalImageOpened(QImage*)),
+		this, SLOT(slotSetBackgroundImage(QImage*)));
 }

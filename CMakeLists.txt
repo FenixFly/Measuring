@@ -23,6 +23,8 @@ set(SOURCES
 	src/point.cpp 
 	src/line.h
 	src/line.cpp
+	src/angle.h
+	src/angle.cpp
 	src/scene.h
 	src/scene.cpp
 	src/drawwidget.h
