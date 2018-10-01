@@ -3,6 +3,7 @@
 #include "point.h"
 #include "line.h"
 #include "angle.h"
+#include "ellipse.h"
 #include <iostream>
 
 Scene::Scene(QObject * parent) : 
@@ -25,6 +26,7 @@ void Scene::mousePressEvent(QGraphicsSceneMouseEvent * event)
 		createAngle(event);
 		break;
 	case FMODE::ELLIPSE:
+		createEllipse(event);
 		break;
 	}
 
@@ -64,6 +66,7 @@ void Scene::mouseReleaseEvent(QGraphicsSceneMouseEvent * event)
 		releaseAngle(event);
 		break;
 	case FMODE::ELLIPSE:
+		itemToDraw = nullptr;
 		break;
 	}
 	QGraphicsScene::mouseReleaseEvent(event);
@@ -121,4 +124,15 @@ void Scene::releaseAngle(QGraphicsSceneMouseEvent * event)
 		if (itemToDraw->type() == 100)
 			itemToDraw = nullptr;
 	}
+}
+
+void Scene::createEllipse(QGraphicsSceneMouseEvent * event)
+{
+	MyPoint* point = new MyPoint(event->scenePos().x(), event->scenePos().y());
+	this->addItem(point);
+	MyPoint* point2 = new MyPoint(event->scenePos().x(), event->scenePos().y());
+	this->addItem(point2);
+	MyEllipse * ellipse = new MyEllipse(point, point2);
+	this->addItem(ellipse);
+	itemToDraw = point2;
 }

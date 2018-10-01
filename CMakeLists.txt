@@ -25,6 +25,8 @@ set(SOURCES
 	src/line.cpp
 	src/angle.h
 	src/angle.cpp
+	src/ellipse.h
+	src/ellipse.cpp
 	src/scene.h
 	src/scene.cpp
 	src/drawwidget.h

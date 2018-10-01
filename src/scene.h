@@ -20,4 +20,6 @@ protected:
 
 	void createAngle(QGraphicsSceneMouseEvent *event);
 	void releaseAngle(QGraphicsSceneMouseEvent *event);
+
+	void createEllipse(QGraphicsSceneMouseEvent *event);
 };
