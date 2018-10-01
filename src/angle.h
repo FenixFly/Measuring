@@ -7,6 +7,7 @@ class MyAngle :
 {
 	Q_OBJECT
 private:
+	QPainterPath shape() const;
 	QRectF boundingRect() const;
 	MyPoint * start;
 	MyPoint * mid;

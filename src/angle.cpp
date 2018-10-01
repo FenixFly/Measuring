@@ -5,6 +5,8 @@
 MyAngle::MyAngle(MyPoint * _start, MyPoint * _mid) :
 	start(_start), mid(_mid)
 {
+	setFlag(ItemIsFocusable);
+	setFlag(ItemIsSelectable);
 	setFlag(ItemSendsGeometryChanges);
 	setFlag(ItemSendsScenePositionChanges);
 	setCacheMode(DeviceCoordinateCache);
@@ -40,6 +42,16 @@ QRectF MyAngle::boundingRect() const
 	
 }
 
+QPainterPath MyAngle::shape() const
+{
+	QPainterPath path;
+	path.moveTo(start->pos());
+	path.lineTo(mid->pos());
+	if (end != nullptr)
+		path.lineTo(end->pos());
+	return path;
+}
+
 int MyAngle::calculateAngle()
 {
 	float ax = mid->x() - start->x();
@@ -54,6 +66,10 @@ int MyAngle::calculateAngle()
 
 void MyAngle::paint(QPainter * painter, const QStyleOptionGraphicsItem * option, QWidget * widget)
 {
+	if (hasFocus())
+		painter->setPen(QPen(QColor(255, 0, 0)));
+	else
+		painter->setPen(QPen(QColor(0, 0, 0)));
 	painter->drawLine(
 		this->line());
 	if (end != nullptr)

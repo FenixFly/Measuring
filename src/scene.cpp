@@ -1,5 +1,6 @@
 #include "scene.h"
 #include <QGraphicsSceneMouseEvent>
+#include <QKeyEvent>
 #include "point.h"
 #include "line.h"
 #include "angle.h"
@@ -10,6 +11,16 @@ Scene::Scene(QObject * parent) :
 	QGraphicsScene(parent)
 {
 	itemToDraw = nullptr;
+}
+
+void Scene::keyReleaseEvent(QKeyEvent * keyEvent)
+{
+	if (keyEvent->key() == Qt::Key::Key_Delete)
+	{
+		if (focusItem() != nullptr)
+			removeItem(focusItem());
+	}
+	QGraphicsScene::keyReleaseEvent(keyEvent);
 }
 
 void Scene::mousePressEvent(QGraphicsSceneMouseEvent * event)
@@ -80,6 +91,8 @@ void Scene::createLine(QGraphicsSceneMouseEvent * event)
 	this->addItem(point2);
 	MyLine * line = new MyLine(point, point2);
 	this->addItem(line);
+	point->setParentItem(line);
+	point2->setParentItem(line);
 	itemToDraw = point2;
 }
 
@@ -102,6 +115,8 @@ void Scene::createAngle(QGraphicsSceneMouseEvent * event)
 		this->addItem(point2);
 		MyAngle * angle = new MyAngle(point, point2);
 		this->addItem(angle);
+		point->setParentItem(angle);
+		point2->setParentItem(angle);
 		itemToDraw = angle;
 	}
 	else
@@ -110,6 +125,7 @@ void Scene::createAngle(QGraphicsSceneMouseEvent * event)
 		this->addItem(point3);
 		MyAngle* angle = dynamic_cast<MyAngle*>(itemToDraw);
 		angle->setEndPoint(point3);
+		point3->setParentItem(angle);
 		connect(point3, SIGNAL(pointMoved()), angle, SLOT(slotUpdate()));
 		itemToDraw = point3;
 
@@ -134,5 +150,7 @@ void Scene::createEllipse(QGraphicsSceneMouseEvent * event)
 	this->addItem(point2);
 	MyEllipse * ellipse = new MyEllipse(point, point2);
 	this->addItem(ellipse);
+	point->setParentItem(ellipse);
+	point2->setParentItem(ellipse);
 	itemToDraw = point2;
 }

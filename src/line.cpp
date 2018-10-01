@@ -24,6 +24,8 @@ void MyLine::mouseMoveEvent(QGraphicsSceneMouseEvent * event)
 MyLine::MyLine(MyPoint* _start, MyPoint * _end) :
 	start(_start), end(_end)
 {
+	setFlag(ItemIsFocusable);
+	setFlag(ItemIsSelectable);
 	setFlag(ItemSendsGeometryChanges);
 	setFlag(ItemSendsScenePositionChanges);
 	setCacheMode(DeviceCoordinateCache);
@@ -37,6 +39,10 @@ MyLine::MyLine(MyPoint* _start, MyPoint * _end) :
 
 void MyLine::paint(QPainter * painter, const QStyleOptionGraphicsItem * option, QWidget * widget)
 {
+	if (hasFocus())
+		painter->setPen(QPen(QColor(255, 0, 0)));
+	else
+		painter->setPen(QPen(QColor(0, 0, 0)));
 	painter->drawLine(
 		this->line());
 	painter->drawText(

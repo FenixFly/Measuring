@@ -11,6 +11,7 @@ public:
 	explicit Scene(QObject* parent = 0);
 	void setMode(FMODE mode) { currentMode = mode; }
 protected:
+	void keyReleaseEvent(QKeyEvent *keyEvent);
 	void mousePressEvent(QGraphicsSceneMouseEvent *event);
 	void mouseMoveEvent(QGraphicsSceneMouseEvent *event);
 	void mouseReleaseEvent(QGraphicsSceneMouseEvent *event);

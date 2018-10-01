@@ -19,6 +19,8 @@ void MyEllipse::mouseMoveEvent(QGraphicsSceneMouseEvent * event)
 MyEllipse::MyEllipse(MyPoint * _start, MyPoint * _end):
 	start(_start), end(_end)
 {
+	setFlag(ItemIsFocusable);
+	setFlag(ItemIsSelectable);
 	setFlag(ItemSendsGeometryChanges);
 	setFlag(ItemSendsScenePositionChanges);
 	setCacheMode(DeviceCoordinateCache);
@@ -30,6 +32,10 @@ MyEllipse::MyEllipse(MyPoint * _start, MyPoint * _end):
 
 void MyEllipse::paint(QPainter * painter, const QStyleOptionGraphicsItem * option, QWidget * widget)
 {
+	if (hasFocus())
+		painter->setPen(QPen(QColor(255, 0, 0)));
+	else
+		painter->setPen(QPen(QColor(0, 0, 0)));
 	painter->drawEllipse(QRectF(start->pos(), end->pos()));
 	float square = abs((end->pos().x() - start->pos().x()))
 		* 3.14159265f / 4.f;
