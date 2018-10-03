@@ -23,4 +23,7 @@ protected:
 	void releaseAngle(QGraphicsSceneMouseEvent *event);
 
 	void createEllipse(QGraphicsSceneMouseEvent *event);
+
+	void createPolygon(QGraphicsSceneMouseEvent *event);
+	void movePolygon(QGraphicsSceneMouseEvent *event);
 };

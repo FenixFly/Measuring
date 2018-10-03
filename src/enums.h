@@ -8,6 +8,7 @@ public:
 		LINE,
 		ANGLE,
 		ELLIPSE,
+		POLYGON
 	};
 	Q_ENUM(FIGUREMODE)
 	Q_GADGET

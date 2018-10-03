@@ -41,6 +41,12 @@ void Toolbar::addButtonsFigures()
 	connect(ellipseAction, &QAction::triggered,
 		[=]() {	emit signalMode(FMODE::ELLIPSE); });
 
+	// Button polygon
+	QAction * polygonAction = new QAction("Polygon", this);
+	this->addAction(polygonAction);
+	connect(polygonAction, &QAction::triggered,
+		[=]() {	emit signalMode(FMODE::POLYGON); });
+
 }
 
 void Toolbar::slotOpenImage()

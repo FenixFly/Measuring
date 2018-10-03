@@ -5,6 +5,7 @@
 #include "line.h"
 #include "angle.h"
 #include "ellipse.h"
+#include "polygon.h"
 #include <iostream>
 
 Scene::Scene(QObject * parent) : 
@@ -39,6 +40,9 @@ void Scene::mousePressEvent(QGraphicsSceneMouseEvent * event)
 	case FMODE::ELLIPSE:
 		createEllipse(event);
 		break;
+	case FMODE::POLYGON:
+		createPolygon(event);
+		break;
 	}
 
 
@@ -57,6 +61,9 @@ void Scene::mouseMoveEvent(QGraphicsSceneMouseEvent * event)
 	case FMODE::ANGLE:
 		break;
 	case FMODE::ELLIPSE:
+		break;
+	case FMODE::POLYGON:
+		movePolygon(event);
 		break;
 	}
 
@@ -77,6 +84,9 @@ void Scene::mouseReleaseEvent(QGraphicsSceneMouseEvent * event)
 		releaseAngle(event);
 		break;
 	case FMODE::ELLIPSE:
+		itemToDraw = nullptr;
+		break;
+	case FMODE::POLYGON:
 		itemToDraw = nullptr;
 		break;
 	}
@@ -153,4 +163,25 @@ void Scene::createEllipse(QGraphicsSceneMouseEvent * event)
 	point->setParentItem(ellipse);
 	point2->setParentItem(ellipse);
 	itemToDraw = point2;
+}
+
+void Scene::createPolygon(QGraphicsSceneMouseEvent * event)
+{
+	MyPolygon * polygon = new MyPolygon();
+	polygon->addPoint(event->scenePos());
+	this->addItem(polygon);
+	itemToDraw = polygon;
+}
+
+void Scene::movePolygon(QGraphicsSceneMouseEvent * event)
+{
+	MyPolygon* polygon = dynamic_cast<MyPolygon*>(itemToDraw);
+	QPointF lastPoint = polygon->getLastPos();
+
+	if ((event->scenePos() - lastPoint).manhattanLength() > 10)
+	{ 
+		polygon->addPoint(event->scenePos());
+		polygon->slotUpdate();
+	}
+	
 }
